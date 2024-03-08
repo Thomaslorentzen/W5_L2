@@ -1,18 +1,18 @@
 from abc import ABC, abstractmethod
 
 class Item(ABC):
-    _id_counter = 1
-
     def __init__(self, name, price, quantity_available=0):
-        self.id = self._generate_id()
+        self.id = Item._generate_id()  # Call the class method directly
         self.name = name
         self.price = price
         self.quantity_available = quantity_available
     
     @classmethod
     def _generate_id(cls):
-        item_id = cls._id_counter
-        cls._id_counter += 1
+        # Use a global counter to keep track of the highest ID assigned
+        global _highest_id
+        item_id = _highest_id
+        _highest_id += 1
         return item_id
     
     @abstractmethod
@@ -55,20 +55,19 @@ class AccessoryItem(Item):
 
 class ItemFactory:
     @staticmethod
-    def create_item(item_type, name, price):
+    def create_item(item_type, name, price, quantity_available=0):
         if item_type == "guitar":
-            return GuitarItem(name, price)
+            return GuitarItem(name, price, quantity_available)
         elif item_type == "amplifier":
-            return AmplifierItem(name, price)
+            return AmplifierItem(name, price, quantity_available)
         elif item_type == "pedal":
-            return PedalItem(name, price)
+            return PedalItem(name, price, quantity_available)
         elif item_type == "accessory":
-            return AccessoryItem(name, price)
+            return AccessoryItem(name, price, quantity_available)
         else:
             raise ValueError("Invalid item type")
 
-
-
-
+# Initialize the global counter
+_highest_id = 1
 
 

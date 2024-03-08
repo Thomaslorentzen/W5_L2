@@ -17,13 +17,12 @@ class Inventory:
         self._inventory[item] = quantity
         self.notify()
 
-
 class InventoryObserver:
     def __init__(self, inventory):
         self._inventory = inventory
     
     def update(self):
-        print("Updated inventory: " + str(self._inventory))    
+        print("Updated inventory: ", self._inventory)    
 
 
 class InventoryManagement:

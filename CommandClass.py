@@ -5,6 +5,7 @@ class Command(ABC):
     def execute(self):
         pass
 
+
 class salesTransactionsCommand(Command):
     def __init__(self, inventory, item, quantity):
         self.inventory = inventory

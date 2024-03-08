@@ -8,7 +8,7 @@ def main():
     # Establish database connection
     db_connection = DatabaseConnection.connection("example.db")
 
-    inventory = Inventory()    
+    inventory = Inventory()   
     # Create items
     factory = ItemFactory()
     observer = InventoryObserver(inventory)
@@ -17,15 +17,19 @@ def main():
     inventory_manager = InventoryManagement()
     
 
-    guitar_item1 = factory.create_item("guitar", "Fender Stratocaster Sunburst", 900)
-    guitar_item2 = factory.create_item("guitar", "Yamaha 2540 Acoustic Steel", 500)
+    # Create guitar items
+    guitar_item1 = factory.create_item("guitar", "Fender Stratocaster Sunburst", 900, 10)
+    guitar_item2 = factory.create_item("guitar", "Yamaha 2540 Acoustic Steel", 500, quantity_available=5)
 
-    amp_item1 = factory.create_item("amplifier", "Marshall", 270)
+    # Create amplifier item
+    amp_item1 = factory.create_item("amplifier", "Marshall", 270, quantity_available=3)
 
-    pedal_item1 = factory.create_item("pedal", "SD-1 distortion", 400)
+    # Create pedal item
+    pedal_item1 = factory.create_item("pedal", "SD-1 distortion", 400, quantity_available=8)
 
-    accessory_item1 = factory.create_item("accessory", "Nanoweb strings 53-12", 40)
-    accessory_item2 = factory.create_item("accessory","Gear4Music picks, 48pc.", 15)
+    # Create accessory items
+    accessory_item1 = factory.create_item("accessory", "Nanoweb strings 53-12", 40, quantity_available=20)
+    accessory_item2 = factory.create_item("accessory","Gear4Music picks, 48pc.", 15, 30)
     
     # Display items
     print("Displaying items:")
@@ -36,7 +40,6 @@ def main():
     accessory_item1.display()
     accessory_item2.display()
     
-
     #Test updates of inventory
     inventory_manager.update_inventory("Fender Stratocaster Sunburst", 10)
     inventory_manager.update_inventory("Yamaha 2540 Acoustic Steel", 7)
